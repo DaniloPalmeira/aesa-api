@@ -1,8 +1,9 @@
 import express, { Application, Request, Response } from "express";
 import axios from "axios";
 import * as cheerio from "cheerio";
-
 import dotenv from "dotenv";
+import cors from 'cors';
+
 dotenv.config();
 
 interface UserData {
@@ -17,6 +18,7 @@ interface UserData {
 const app: Application = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.post("/api/login", async (req: Request, res: Response) => {
